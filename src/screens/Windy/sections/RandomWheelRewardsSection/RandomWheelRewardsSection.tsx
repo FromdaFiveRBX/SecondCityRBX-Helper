@@ -314,7 +314,7 @@ export const RandomWheelRewardsSection = ({
         </Tabs>
         <header className="flex min-w-0 flex-1 flex-col items-start lg:items-center">
           <p className="mt-[-1.00px] flex w-fit items-center [font-family:'Inter',Helvetica] text-xs font-normal leading-[normal] tracking-[1.44px] text-[#b7b7b1]">
-            WINDY CITY V5 &bull; ILLEGAL AREA
+            SECOND CITY RBX V5 &bull; ILLEGAL AREA
           </p>
           <h2 className="mt-[11px] flex w-fit items-center whitespace-nowrap [font-family:'Inter',Helvetica] text-[40px] font-black leading-[40px] tracking-[-2.08px] text-[#f3f3f1] sm:text-[52px] sm:leading-[52px]">
             RANDOM WHEEL
