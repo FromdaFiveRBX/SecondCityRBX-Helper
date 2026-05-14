@@ -3,7 +3,7 @@
   "type": "module",
   "source": "./index.html",
   "name": "windy-project",
-  "description": "Windy City V5 - Illegal Area",
+  "description": "Second City V5 - Illegal Area",
   "scripts": {
     "dev": "vite",
     "build": "vite build"
