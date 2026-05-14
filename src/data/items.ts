@@ -160,6 +160,17 @@ export const catalogItems: CatalogItem[] = [
     tags: ["Easy to move", "Starter product"],
     stats: { duration: "20 min", effect: "Relaxation, slight slowdown", weight: "0.4 kg" },
   },
+  {
+    id: "Percocet30",
+    name: "Percocet 30",
+    type: "drug",
+    rarity: "Uncommon",
+    tier: 1,
+    description:
+      "Percocet 30mg pill. A strong dose that hits harder and lasts longer, popular with heavy users.",
+    tags: ["Health regen", "Aim sway"],
+    stats: { duration: "300s", effect: "Health regen, reduced aim sway", weight: "0.01 kg" },
+  },
 ];
 
 export const getItemsByTier = (tier: 1 | 1.5 | 2): CatalogItem[] =>
