@@ -125,7 +125,7 @@ export const IllegalAreaHeroSection = (): JSX.Element => {
             </Badge>
             <div className="max-w-[860px] pt-5">
               <h1 className="[font-family:'Inter',Helvetica] text-[40px] font-black leading-[1.02] tracking-[-2.4px] text-[#f5f7fa] sm:text-[52px] md:text-7xl md:tracking-[-3.60px]">
-                Second City RBX Illegal Area
+                Second City <sup className="text-[0.4em] align-top inline-block mt-[-0.2em]">RBX</sup> Illegal Area
               </h1>
             </div>
             <div className="max-w-[660px] pt-[17px] md:pr-[34.92px]">
