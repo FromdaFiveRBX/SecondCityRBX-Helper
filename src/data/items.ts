@@ -1,4 +1,4 @@
-export type ItemType = "weapon" | "drug";
+export type ItemType = "weapon" | "drug" | "attachment" ;
 
 export interface WeaponStats {
   damage: number;
@@ -13,6 +13,12 @@ export interface DrugStats {
   weight: string;
 }
 
+export interface AttachmentStats {
+  type: string;
+  effect: string;
+  weight: string;
+}
+
 export interface CatalogItem {
   id: string;
   name: string;
@@ -22,7 +28,7 @@ export interface CatalogItem {
   description: string;
   tags: string[];
   image?: string;
-  stats?: WeaponStats | DrugStats;
+  stats?: WeaponStats | DrugStats | AttachmentStats;
 }
 
 export const catalogItems: CatalogItem[] = [
@@ -171,6 +177,22 @@ export const catalogItems: CatalogItem[] = [
     tags: ["Health regen", "Aim sway"],
     image: "https://fromdafiverbx.github.io/SecondCityRBX-Helper/perc30.png",
     stats: { duration: "300s", effect: "Health regen, reduced aim sway", weight: "0.01 kg" },
+  },
+{
+    id: "BlackVec",
+    name: "Kriss Vector Magazine (Black)",
+    type: "attachment",
+    rarity: "Uncommon",
+    tier: 1,
+    description:
+      "A high-capacity polymer magazine designed for pistols. Increases sustained fire capability.",
+    tags: ["Extended Mag", "Increased Capacity"],
+    image: "https://fromdafiverbx.github.io/SecondCityRBX-Helper/perc30.png", 
+    stats: { 
+      capacity: "45 Rounds", 
+      reload: "-10% Reload Speed", 
+      weight: "0.45 kg" 
+    },
   },
 ];
 
