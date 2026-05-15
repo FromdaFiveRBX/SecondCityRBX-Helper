@@ -179,14 +179,14 @@ export const catalogItems: CatalogItem[] = [
     stats: { duration: "300s", effect: "Health regen, reduced aim sway", weight: "0.01 kg" },
   },
 {
-  id: "BlackVec",
-  name: "Kriss Vector Magazine (Black)",
+  id: "KrissVectorMag",
+  name: "Kriss Vector Magazine",
   type: "attachment",
   rarity: "Uncommon",
   tier: 1,
   description: "A high-capacity polymer magazine designed for pistols. Increases sustained fire capability.",
   tags: ["Extended Mag", "Increased Capacity"],
-  image: "https://fromdafiverbx.github.io/SecondCityRBX-Helper/BlackVec.png", 
+  image: "https://fromdafiverbx.github.io/SecondCityRBX-Helper/KrissVecMag.png", 
   stats: { 
     AtachType: "Magazine", 
     effect: "45 Rounds, -10% Reload Speed", 
