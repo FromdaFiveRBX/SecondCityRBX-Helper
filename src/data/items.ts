@@ -14,7 +14,7 @@ export interface DrugStats {
 }
 
 export interface AttachmentStats {
-  type: string;
+  AtachType: string;
   effect: string;
   weight: string;
 }
@@ -179,21 +179,20 @@ export const catalogItems: CatalogItem[] = [
     stats: { duration: "300s", effect: "Health regen, reduced aim sway", weight: "0.01 kg" },
   },
 {
-    id: "BlackVec",
-    name: "Kriss Vector Magazine (Black)",
-    type: "attachment",
-    rarity: "Uncommon",
-    tier: 1,
-    description:
-      "A high-capacity polymer magazine designed for pistols. Increases sustained fire capability.",
-    tags: ["Extended Mag", "Increased Capacity"],
-    image: "https://fromdafiverbx.github.io/SecondCityRBX-Helper/perc30.png", 
-    stats: { 
-      capacity: "45 Rounds", 
-      reload: "-10% Reload Speed", 
-      weight: "0.45 kg" 
-    },
+  id: "BlackVec",
+  name: "Kriss Vector Magazine (Black)",
+  type: "attachment",
+  rarity: "Uncommon",
+  tier: 1,
+  description: "A high-capacity polymer magazine designed for pistols. Increases sustained fire capability.",
+  tags: ["Extended Mag", "Increased Capacity"],
+  image: "https://fromdafiverbx.github.io/SecondCityRBX-Helper/BlackVec.png", 
+  stats: { 
+    AtachType: "Magazine", 
+    effect: "45 Rounds, -10% Reload Speed", 
+    weight: "0.45 kg" 
   },
+},
 ];
 
 export const getItemsByTier = (tier: 1 | 1.5 | 2): CatalogItem[] =>
