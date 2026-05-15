@@ -1,6 +1,6 @@
 import * as React from "react";
 import { cn } from "../../lib/utils";
-import type { CatalogItem, WeaponStats, DrugStats } from "../../data/items";
+import type { CatalogItem, WeaponStats } from "../../data/items";
 
 interface DetailModalProps {
   item: CatalogItem | null;
@@ -16,10 +16,11 @@ const rarityColors: Record<string, string> = {
   Legendary: "text-[#fb923c] border-[#fb923c]/30 bg-[#fb923c]/10",
 };
 
+// 1. Updated labels to include Attachment
 const typeLabels: Record<string, string> = {
   weapon: "Weapon",
   drug: "Drug",
-
+  attachment: "Attachment",
 };
 
 function StatBar({ value, max = 100 }: { value: number; max?: number }) {
@@ -47,8 +48,6 @@ export function DetailModal({ item, drugQuantity, onClose }: DetailModalProps) {
   if (!item) return null;
 
   const isWeapon = item.type === "weapon";
-  const weaponStats = isWeapon ? (item.stats as WeaponStats) : null;
-  const drugStats = !isWeapon ? (item.stats as DrugStats) : null;
 
   return (
     <div
@@ -78,8 +77,8 @@ export function DetailModal({ item, drugQuantity, onClose }: DetailModalProps) {
               >
                 {item.rarity}
               </span>
-              <span className="rounded-md border border-[#161b22] bg-[#0a0d12] px-2 py-0.5 text-[11px] font-bold tracking-[0.5px] text-[#9aa6b2]">
-                {typeLabels[item.type]}
+              <span className="rounded-md border border-[#161b22] bg-[#0a0d12] px-2 py-0.5 text-[11px] font-bold tracking-[0.5px] text-[#9aa6b2] capitalize">
+                {typeLabels[item.type] || item.type}
               </span>
               <span className="rounded-md border border-[#161b22] bg-[#0a0d12] px-2 py-0.5 text-[11px] font-bold tracking-[0.5px] text-[#9aa6b2]">
                 Tier {item.tier}
@@ -92,7 +91,6 @@ export function DetailModal({ item, drugQuantity, onClose }: DetailModalProps) {
           <button
             onClick={onClose}
             className="ml-4 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-[#161b22] bg-[#0a0d12] text-[#9aa6b2] transition-colors hover:border-[#b8c7d9]/30 hover:text-[#f5f7fa]"
-            aria-label="Close modal"
           >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path
@@ -110,27 +108,24 @@ export function DetailModal({ item, drugQuantity, onClose }: DetailModalProps) {
             {item.description}
           </p>
 
-          {weaponStats && (
+          {/* Weapon Specific Progress Bars */}
+          {isWeapon && (
             <div className="space-y-3">
-              <h3 className="[font-family:'Inter',Helvetica] text-[11px] font-bold tracking-[1px] text-[#b8c7d9] uppercase">
+              <h3 className="text-[11px] font-bold tracking-[1px] text-[#b8c7d9] uppercase">
                 Combat Stats
               </h3>
               <div className="space-y-2.5">
                 {[
-                  { label: "Damage", value: weaponStats.damage },
-                  { label: "Range", value: weaponStats.range },
-                  { label: "Fire Rate", value: weaponStats.fireRate },
-                  { label: "Recoil", value: weaponStats.recoil },
+                  { label: "Damage", value: (item.stats as WeaponStats).damage },
+                  { label: "Range", value: (item.stats as WeaponStats).range },
+                  { label: "Fire Rate", value: (item.stats as WeaponStats).fireRate },
+                  { label: "Recoil", value: (item.stats as WeaponStats).recoil },
                 ].map(({ label, value }) => (
                   <div key={label} className="flex items-center gap-3">
-                    <span className="w-20 shrink-0 [font-family:'Inter',Helvetica] text-xs font-bold text-[#9aa6b2]">
-                      {label}
-                    </span>
+                    <span className="w-20 shrink-0 text-xs font-bold text-[#9aa6b2]">{label}</span>
                     <div className="flex flex-1 items-center gap-2">
                       <StatBar value={value} />
-                      <span className="w-7 shrink-0 text-right [font-family:'Inter',Helvetica] text-xs font-bold text-[#f5f7fa]">
-                        {value}
-                      </span>
+                      <span className="w-7 shrink-0 text-right text-xs font-bold text-[#f5f7fa]">{value}</span>
                     </div>
                   </div>
                 ))}
@@ -138,26 +133,23 @@ export function DetailModal({ item, drugQuantity, onClose }: DetailModalProps) {
             </div>
           )}
 
-          {drugStats && (
+          {/* 2. Dynamic Stats Rendering for Drugs & Attachments */}
+          {!isWeapon && (
             <div className="space-y-3">
-              <h3 className="[font-family:'Inter',Helvetica] text-[11px] font-bold tracking-[1px] text-[#b8c7d9] uppercase">
+              <h3 className="text-[11px] font-bold tracking-[1px] text-[#b8c7d9] uppercase">
                 Item Stats
               </h3>
               <div className="grid grid-cols-1 gap-2">
-                {[
-                  { label: "Duration", value: drugStats.duration },
-                  { label: "Effect", value: drugStats.effect },
-                  { label: "Weight", value: drugStats.weight },
-                ].map(({ label, value }) => (
+                {Object.entries(item.stats).map(([key, value]) => (
                   <div
-                    key={label}
+                    key={key}
                     className="flex flex-col gap-1 rounded-md border border-[#161b22] bg-[#0a0d12] px-3.5 py-3"
                   >
-                    <span className="[font-family:'Inter',Helvetica] text-[11px] font-bold tracking-[0.8px] text-[#b8c7d9] uppercase">
-                      {label}
+                    <span className="text-[11px] font-bold tracking-[0.8px] text-[#b8c7d9] uppercase">
+                      {key}
                     </span>
-                    <span className="[font-family:'Inter',Helvetica] text-sm font-normal text-[#f5f7fa]">
-                      {value}
+                    <span className="text-sm font-normal text-[#f5f7fa]">
+                      {value as string}
                     </span>
                   </div>
                 ))}
@@ -168,10 +160,7 @@ export function DetailModal({ item, drugQuantity, onClose }: DetailModalProps) {
           {item.tags.length > 0 && (
             <div className="flex flex-wrap gap-2">
               {item.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-xl border border-[#161b22] bg-[#080b10] px-2.5 py-[7px] [font-family:'Inter',Helvetica] text-xs font-bold text-[#f5f7fa]"
-                >
+                <span key={tag} className="rounded-xl border border-[#161b22] bg-[#080b10] px-2.5 py-[7px] text-xs font-bold text-[#f5f7fa]">
                   {tag}
                 </span>
               ))}
