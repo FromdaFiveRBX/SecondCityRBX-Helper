@@ -134,9 +134,9 @@ export function DetailModal({ item, drugQuantity, onClose }: DetailModalProps) {
           )}
 
           {/* 2. Dynamic Stats Rendering for Drugs & Attachments */}
-          {!isWeapon && (
+         {!isWeapon && (
             <div className="space-y-3">
-              <h3 className="text-[11px] font-bold tracking-[1px] text-[#b8c7d9] uppercase">
+              <h3 className="[font-family:'Inter',Helvetica] text-[11px] font-bold tracking-[1px] text-[#b8c7d9] uppercase">
                 Item Stats
               </h3>
               <div className="grid grid-cols-1 gap-2">
@@ -145,10 +145,10 @@ export function DetailModal({ item, drugQuantity, onClose }: DetailModalProps) {
                     key={key}
                     className="flex flex-col gap-1 rounded-md border border-[#161b22] bg-[#0a0d12] px-3.5 py-3"
                   >
-                    <span className="text-[11px] font-bold tracking-[0.8px] text-[#b8c7d9] uppercase">
+                    <span className="[font-family:'Inter',Helvetica] text-[11px] font-bold tracking-[0.8px] text-[#b8c7d9] uppercase">
                       {key}
                     </span>
-                    <span className="text-sm font-normal text-[#f5f7fa]">
+                    <span className="[font-family:'Inter',Helvetica] text-sm font-normal text-[#f5f7fa]">
                       {value as string}
                     </span>
                   </div>
