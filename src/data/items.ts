@@ -169,7 +169,7 @@ export const catalogItems: CatalogItem[] = [
     description:
       "Percocet 30mg pill. A strong dose that hits harder and lasts longer, popular with heavy users.",
     tags: ["Health regen", "Aim sway"],
-    image: "https://your-github-username.github.io/SecondCityRBX-Helper/Percocet30.png",
+    image: "https://your-github-username.github.io/SecondCityRBX-Helper/Perc30.png",
     stats: { duration: "300s", effect: "Health regen, reduced aim sway", weight: "0.01 kg" },
   },
 ];
