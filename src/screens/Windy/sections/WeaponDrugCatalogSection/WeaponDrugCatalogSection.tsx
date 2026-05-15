@@ -12,7 +12,6 @@ const filterButtons: { value: FilterType; label: string }[] = [
   { value: "WEAPONS", label: "Weapons" },
   { value: "ATTACHMENTS", label: "Attachments" },
   { value: "DRUGS", label: "Drugs" },
-
 ];
 
 const filterTypeMap: Record<FilterType, ItemType | null> = {
@@ -20,7 +19,6 @@ const filterTypeMap: Record<FilterType, ItemType | null> = {
   WEAPONS: "weapon",
   ATTACHMENTS: "attachment",
   DRUGS: "drug",
-
 };
 
 interface WeaponDrugCatalogSectionProps {
@@ -45,6 +43,16 @@ export const WeaponDrugCatalogSection = ({
     });
   }, [search, activeFilter]);
 
+  // Helper function to show correct icon if image is missing
+  const getFallbackIcon = (type: ItemType) => {
+    switch (type) {
+      case "drug": return "💊";
+      case "attachment": return "🔧";
+      case "weapon": return "🔫";
+      default: return "📦";
+    }
+  };
+
   return (
     <section
       id="weapon-catalog"
@@ -52,15 +60,14 @@ export const WeaponDrugCatalogSection = ({
     >
       <header className="flex w-full max-w-[700px] flex-col items-start gap-3">
         <p className="flex items-center [font-family:'Inter',Helvetica] text-xs font-bold tracking-[0.96px] text-[#b8c7d9]">
-          All weapons + descriptions
+          All items + descriptions
         </p>
         <h2 className="flex items-center [font-family:'Inter',Helvetica] text-[44px] font-black leading-[46.2px] tracking-[-1.76px] text-[#f5f7fa] max-sm:text-3xl max-sm:leading-tight">
-          Weapon &amp; Drug catalog
+          Arsenal &amp; Supply Catalog
         </h2>
         <p className="[font-family:'Inter',Helvetica] text-[15px] font-normal leading-[25.5px] tracking-[0] text-[#9aa6b2]">
-          A full browse area so players can see every main weapon and drug
-          reward, what it is good for, and which route or playstyle it fits best
-          before they use the random selector.
+          A full browse area so players can see every weapon, attachment, and drug
+          reward, what it is good for, and which route or playstyle it fits best.
         </p>
       </header>
 
@@ -102,7 +109,7 @@ export const WeaponDrugCatalogSection = ({
           </svg>
           <input
             type="text"
-            placeholder="Search items..."
+            placeholder="Search arsenal..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="h-10 w-full rounded-xl border border-[#161b22] bg-[#0a0d12] pl-9 pr-3 [font-family:'Inter',Helvetica] text-[13px] text-[#f5f7fa] placeholder-[#9aa6b2] outline-none focus:border-[#b8c7d9]/40"
@@ -132,7 +139,7 @@ export const WeaponDrugCatalogSection = ({
                     />
                   ) : (
                     <span className="text-4xl opacity-50">
-                      {item.type === "drug" ? "💊" : "🔫"}
+                      {getFallbackIcon(item.type)}
                     </span>
                   )}
                 </div>
