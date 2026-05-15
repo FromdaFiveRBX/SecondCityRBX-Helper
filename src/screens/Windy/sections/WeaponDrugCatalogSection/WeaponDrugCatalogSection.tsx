@@ -5,11 +5,12 @@ import { Card, CardContent } from "../../../../components/ui/card";
 import type { CatalogItem, ItemType } from "../../../../data/items";
 import { catalogItems } from "../../../../data/items";
 
-type FilterType = "ALL" | "WEAPONS" | "DRUGS";
+type FilterType = "ALL" | "WEAPONS" | "ATTACHMENTS" | "DRUGS";
 
 const filterButtons: { value: FilterType; label: string }[] = [
   { value: "ALL", label: "All" },
   { value: "WEAPONS", label: "Weapons" },
+  { value: "ATTACHMENTS", label: "Attachments" },
   { value: "DRUGS", label: "Drugs" },
 
 ];
@@ -17,6 +18,7 @@ const filterButtons: { value: FilterType; label: string }[] = [
 const filterTypeMap: Record<FilterType, ItemType | null> = {
   ALL: null,
   WEAPONS: "weapon",
+  ATTACHMENTS: "attachment",
   DRUGS: "drug",
 
 };
