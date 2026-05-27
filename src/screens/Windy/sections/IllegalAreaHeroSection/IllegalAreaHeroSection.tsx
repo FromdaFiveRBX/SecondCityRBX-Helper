@@ -100,7 +100,7 @@ export const IllegalAreaHeroSection = (): JSX.Element => {
           <img
             className="absolute left-1/2 top-0 hidden h-[843px] w-[878px] -translate-x-[27%] object-cover lg:block"
             alt="Background overlay middle"
-            src="rectangle-1722.png"
+            src="rectangleNew001.png"
           />
           <img
             className="absolute right-0 top-0 hidden h-[702px] w-[560px] object-cover xl:block"
