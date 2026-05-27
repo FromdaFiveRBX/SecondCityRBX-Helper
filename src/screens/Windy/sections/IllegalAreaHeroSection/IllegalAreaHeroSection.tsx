@@ -105,12 +105,12 @@ export const IllegalAreaHeroSection = (): JSX.Element => {
           <img
             className="absolute right-0 top-0 hidden h-[702px] w-[560px] object-cover xl:block"
             alt="Background overlay right"
-            src="rectangle-1723.png"
+            src="rectangleNew002.png"
           />
           <img
             className="absolute left-0 top-0 h-full max-w-[338px] object-cover"
             alt="Background left"
-            src="rectangle-middle.png"
+            src="rectangleNew002.png"
           />
         </div>
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,6,7,0.53)_0%,rgba(5,6,7,0.3)_40%,rgba(5,6,7,0.47)_100%)] opacity-50" />
