@@ -223,6 +223,37 @@ export const catalogItems: CatalogItem[] = [
     weight: "0.50 kg" 
   },
 },
+  {
+  id: "RubberGrip",
+  name: "Rubber Band Grip",
+  type: "attachment",
+  rarity: "Common",
+  tier: 1,
+  description: "A flexible rubber band grip that improves weapon stability and recoil control. Its textured surface provides a firm, reliable hold during rapid engagements.",
+  tags: ["Grip", "Stability", "Control"],
+  image: "https://fromdafiverbx.github.io/SecondCityRBX-Helper/RubberGrip.png",
+  stats: {
+    AtachType: "Grip",
+    effect: "Reduced Weapon Sway, +10% Recoil Control",
+    weight: "0.10 kg"
+  },
+},
+  },
+  {
+  id: "ColoredRubberGrip",
+  name: "Colored Rubber Band Grip",
+  type: "attachment",
+  rarity: "Common",
+  tier: 1,
+  description: "A flexible rubber band grip that improves weapon stability and recoil control. Its textured surface provides a firm, reliable hold during rapid engagements.",
+  tags: ["Grip", "Stability", "Control"],
+  image: "https://fromdafiverbx.github.io/SecondCityRBX-Helper/ColoredRubberGrip.png",
+  stats: {
+    AtachType: "Grip",
+    effect: "Reduced Weapon Sway, +10% Recoil Control",
+    weight: "0.10 kg"
+  },
+},
 ];
 
 export const getItemsByTier = (tier: 1 | 1.5 | 2): CatalogItem[] =>
