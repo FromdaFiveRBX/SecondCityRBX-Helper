@@ -238,7 +238,6 @@ export const catalogItems: CatalogItem[] = [
     weight: "0.10 kg"
   },
 },
-  },
   {
   id: "ColoredRubberGrip",
   name: "Colored Rubber Band Grip",
