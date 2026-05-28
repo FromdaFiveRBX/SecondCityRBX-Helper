@@ -189,7 +189,22 @@ export const catalogItems: CatalogItem[] = [
   image: "https://fromdafiverbx.github.io/SecondCityRBX-Helper/KrissVecMag.png", 
   stats: { 
     AtachType: "Magazine", 
-    effect: "45 Rounds, -10% Reload Speed", 
+    effect: "+10 Rounds, -10% Reload Speed", 
+    weight: "0.45 kg" 
+  },
+},
+{
+  id: "ClearEXT",
+  name: "Clear Extended Magazine",
+  type: "attachment",
+  rarity: "Uncommon",
+  tier: 1,
+  description: "A transparent, high‑capacity magazine built from reinforced polymer. Allows quick visual ammo checks and boosts sustained fire performance.",
+  tags: ["Extended Mag", "Increased Capacity"],
+  image: "https://fromdafiverbx.github.io/SecondCityRBX-Helper/ClearEXT.png", 
+  stats: { 
+    AtachType: "Magazine", 
+    effect: "+5 Rounds, -5% Reload Speed", 
     weight: "0.45 kg" 
   },
 },
