@@ -208,6 +208,21 @@ export const catalogItems: CatalogItem[] = [
     weight: "0.45 kg" 
   },
 },
+  {
+  id: "DrumMag",
+  name: "Drum Magazine",
+  type: "attachment",
+  rarity: "Uncommon",
+  tier: 1,
+  description: "A high‑capacity drum magazine engineered for maximum sustained fire. Its reinforced housing ensures reliable feeding during extended engagements.",
+  tags: ["Extended Mag", "Increased Capacity"],
+  image: "https://fromdafiverbx.github.io/SecondCityRBX-Helper/DrumMag.png", 
+  stats: { 
+    AtachType: "Magazine", 
+    effect: "+20 Rounds, -20% Reload Speed", 
+    weight: "0.50 kg" 
+  },
+},
 ];
 
 export const getItemsByTier = (tier: 1 | 1.5 | 2): CatalogItem[] =>
