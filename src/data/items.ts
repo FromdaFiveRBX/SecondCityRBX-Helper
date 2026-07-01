@@ -53,7 +53,7 @@ export const catalogItems: CatalogItem[] = [
     description:
       "Light sidearm for new players with fast draw speed, cheap ammo cost, and steady entry-level value for simple city jobs and everyday protection.",
     tags: ["Low recoil", "Fast draw"],
-    image: "https://fromdafiverbx.github.io/SecondCityRBX-Helper/RubberGrip.png",
+    image: "https://fromdafiverbx.github.io/SecondCityRBX-Helper/c329409f-c3e5-41f9-8913-4b8dd7834a03.png",
     stats: { damage: 28, range: 35, fireRate: 72, recoil: 20 },
   },
   {
