@@ -44,6 +44,18 @@ export const catalogItems: CatalogItem[] = [
     image: "/glock-19.png",
     stats: { damage: 28, range: 35, fireRate: 72, recoil: 20 },
   },
+    {
+    id: "glock-9g",
+    name: "Glock 19",
+    type: "weapon",
+    rarity: "Common",
+    tier: 1,
+    description:
+      "Light sidearm for new players with fast draw speed, cheap ammo cost, and steady entry-level value for simple city jobs and everyday protection.",
+    tags: ["Low recoil", "Fast draw"],
+    image: "/glock-19.png",
+    stats: { damage: 28, range: 35, fireRate: 72, recoil: 20 },
+  },
   {
     id: "mini-smg",
     name: "Mini SMG",
