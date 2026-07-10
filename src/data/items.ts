@@ -60,7 +60,7 @@ export const catalogItems: CatalogItem[] = [
     id: "draco-t1",
     name: "Micro Draco",
     type: "weapon",
-    rarity: "Uncommon",
+    rarity: "Rare",
     tier: 1,
     description:
       "A semi-automatic, heavy-hitting compact rifle. Delivers devastating close-range damage with a slower, deliberate fire rate and massive recoil.",
