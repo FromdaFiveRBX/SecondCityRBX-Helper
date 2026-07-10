@@ -57,6 +57,23 @@ export const catalogItems: CatalogItem[] = [
     stats: { damage: 28, range: 35, fireRate: 72, recoil: 20 },
   },
   {
+    id: "draco-t1",
+    name: "Micro Draco",
+    type: "weapon",
+    rarity: "Uncommon",
+    tier: 1,
+    description:
+      "A semi-automatic, heavy-hitting compact rifle. Delivers devastating close-range damage with a slower, deliberate fire rate and massive recoil.",
+    tags: ["Semi Automatic", "High Damage"],
+    image: "https://fromdafiverbx.github.io/SecondCityRBX-Helper/draco-t1.png",
+    stats: { 
+      damage: 35,     
+      range: 45,       
+      fireRate: 50,   
+      recoil: 60       
+    },
+  },
+  {
     id: "mini-smg",
     name: "Mini SMG",
     type: "weapon",
