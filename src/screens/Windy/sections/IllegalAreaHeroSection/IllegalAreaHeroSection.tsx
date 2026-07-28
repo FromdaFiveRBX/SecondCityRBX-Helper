@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { Badge } from "../../../../components/ui/badge";
 
 const secondaryCtaClass =
@@ -5,7 +6,15 @@ const secondaryCtaClass =
 
 function IconViewAllWeapons() {
   return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      focusable="false"
+    >
       <g clipPath="url(#hero_clip_view_weapons)">
         <path
           d="M9 16.5V8.99999M15.2025 13.7025L16.5 15M15.75 7.87349V5.99999C15.7495 5.46464 15.4636 4.97016 15 4.70249L9.75 1.70249C9.2859 1.43454 8.7141 1.43454 8.25 1.70249L3 4.70249C2.53637 4.97016 2.25055 5.46464 2.25 5.99999V12C2.25082 12.5351 2.53661 13.0292 3 13.2967L8.25 16.2967C8.71397 16.5649 9.28576 16.5652 9.75 16.2975L10.485 15.8782"
@@ -47,7 +56,8 @@ function IconOpenSupplyDrop() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className="h-[53px] w-auto max-w-full"
-      aria-hidden
+      aria-hidden="true"
+      focusable="false"
     >
       <rect x="0.5" y="0.5" width="213.16" height="52" rx="7.5" fill="#B8C7D9" />
       <rect x="0.5" y="0.5" width="213.16" height="52" rx="7.5" stroke="#B8C7D9" />
@@ -82,7 +92,15 @@ function IconOpenSupplyDrop() {
 
 function IconViewSkillInformation() {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      focusable="false"
+    >
       <path
         d="M4 20C3.45 20 2.97933 19.8043 2.588 19.413C2.19667 19.0217 2.00067 18.5507 2 18V6C2 5.45 2.196 4.97933 2.588 4.588C2.98 4.19667 3.45067 4.00067 4 4H10L12 6H20C20.55 6 21.021 6.196 21.413 6.588C21.805 6.98 22.0007 7.45067 22 8V18C22 18.55 21.8043 19.021 21.413 19.413C21.0217 19.805 20.5507 20.0007 20 20H4Z"
         fill="currentColor"
@@ -93,7 +111,15 @@ function IconViewSkillInformation() {
 
 function IconFaction() {
   return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      focusable="false"
+    >
       <path
         d="M9 1.5L2.25 4.5V8.25C2.25 12.42 5.13 16.26 9 17.25C12.87 16.26 15.75 12.42 15.75 8.25V4.5L9 1.5Z"
         stroke="currentColor"
@@ -114,7 +140,15 @@ function IconFaction() {
 
 function IconIllegalCivilian() {
   return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      focusable="false"
+    >
       <path
         d="M9 2.25C5.82 2.25 3.25 4.82 3.25 8V9.75C3.25 10.58 3.92 11.25 4.75 11.25H13.25C14.08 11.25 14.75 10.58 14.75 9.75V8C14.75 4.82 12.18 2.25 9 2.25Z"
         stroke="currentColor"
@@ -133,8 +167,6 @@ function IconIllegalCivilian() {
   );
 }
 
-import React, { useState } from "react";
-
 export const IllegalAreaHeroSection = (): JSX.Element => {
   const [selectedRole, setSelectedRole] = useState<"faction" | "civilian">("faction");
 
@@ -143,7 +175,7 @@ export const IllegalAreaHeroSection = (): JSX.Element => {
       <div className="relative min-h-[843px] w-full">
         {/* Background Layers */}
         <div className="absolute inset-0 opacity-[0.42]">
-          <div className="absolute inset-0 [background:url(..//illegal-area-background.png)_50%_50%_/_cover]" />
+          <div className="absolute inset-0 [background:url(./illegal-area-background.png)_50%_50%_/_cover]" />
           <img
             className="absolute left-1/2 top-0 hidden h-[843px] w-[878px] -translate-x-[27%] object-cover lg:block"
             alt="Background overlay middle"
@@ -164,8 +196,8 @@ export const IllegalAreaHeroSection = (): JSX.Element => {
         <div className="absolute inset-0 opacity-[0.18] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,255,255,0.06)_3%,rgba(255,255,255,0)_3%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,7,10,0.22)_0%,rgba(5,7,10,0.58)_58%,rgba(5,7,10,0.75)_100%)]" />
 
-        {/* Hero Content (Restored to exact original layout) */}
-        <div className="relative mx-auto flex min-h-[843px] w-full max-w-[1440px] items-start px-4 pb-24 pt-20 sm:px-6 md:px-8 md:pb-[87px] md:pt-24">
+        {/* Hero Content */}
+        <div className="relative mx-auto flex min-h-[843px] w-full max-w-[1440px] flex-col justify-between px-4 pb-12 pt-20 sm:px-6 md:px-8 md:pb-16 md:pt-24">
           <header className="flex w-full max-w-[860px] flex-col items-start">
             <Badge className="h-auto rounded-xl border-none bg-transparent px-3.5 py-2 [font-family:'Inter',Helvetica] text-xs font-bold tracking-[0.48px] text-[#f5f7fa] hover:bg-transparent">
               <span className="mr-2 inline-flex shrink-0 items-center">
@@ -180,7 +212,6 @@ export const IllegalAreaHeroSection = (): JSX.Element => {
             <div className="max-w-[660px] pt-[17px] md:pr-[34.92px]">
               <p className="[font-family:'Inter',Helvetica] text-base font-normal leading-[27.2px] tracking-[0] text-[#9aa6b2]">
                 Browse supply drops, skill information, and all firearms and drugs Second City RBX has to offer.
-                <br />
               </p>
             </div>
             <nav aria-label="Illegal area hero actions" className="pt-7">
@@ -212,16 +243,21 @@ export const IllegalAreaHeroSection = (): JSX.Element => {
             </nav>
           </header>
 
-          {/* --- ABSOLUTELY POSITIONED ROLE TOGGLE SWITCH --- */}
-          <div className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center justify-center text-center">
+          {/* Role Toggle Switch */}
+          <div className="z-10 mt-12 flex flex-col items-center justify-center text-center">
             <span className="mb-3 text-xs font-bold tracking-[0.15em] text-[#b8c7d9]/60 uppercase">
               SELECT ROLE
             </span>
-            <div className="inline-flex rounded-full border border-[#161b22] bg-[#080b10]/90 p-1.5 backdrop-blur-md">
+            <div
+              className="inline-flex rounded-full border border-[#161b22] bg-[#080b10]/90 p-1.5 backdrop-blur-md"
+              role="group"
+              aria-label="Select player role"
+            >
               <button
                 type="button"
                 onClick={() => setSelectedRole("faction")}
-                className={`inline-flex items-center gap-2.5 rounded-full px-7 py-3 text-[14px] font-bold transition-all duration-200 ${
+                aria-pressed={selectedRole === "faction"}
+                className={`inline-flex items-center gap-2.5 rounded-full px-7 py-3 text-[14px] font-bold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b8c7d9]/50 ${
                   selectedRole === "faction"
                     ? "bg-[#c8d6e5] text-[#080b10] shadow-md"
                     : "text-[#f5f7fa]/70 hover:text-[#f5f7fa]"
@@ -234,7 +270,8 @@ export const IllegalAreaHeroSection = (): JSX.Element => {
               <button
                 type="button"
                 onClick={() => setSelectedRole("civilian")}
-                className={`inline-flex items-center gap-2.5 rounded-full px-7 py-3 text-[14px] font-bold transition-all duration-200 ${
+                aria-pressed={selectedRole === "civilian"}
+                className={`inline-flex items-center gap-2.5 rounded-full px-7 py-3 text-[14px] font-bold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b8c7d9]/50 ${
                   selectedRole === "civilian"
                     ? "bg-[#c8d6e5] text-[#080b10] shadow-md"
                     : "text-[#f5f7fa]/70 hover:text-[#f5f7fa]"
@@ -245,8 +282,6 @@ export const IllegalAreaHeroSection = (): JSX.Element => {
               </button>
             </div>
           </div>
-          {/* ----------------------------------------------- */}
-
         </div>
       </div>
     </section>
