@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useRef, useEffect } from "react";
 import { Badge } from "../../../../components/ui/badge";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
@@ -21,6 +21,11 @@ const filterTypeMap: Record<FilterType, ItemType | null> = {
   DRUGS: "drug",
 };
 
+// Filter options matching mockups
+const TIER_OPTIONS = ["All", "Tier 1", "Tier 1.5", "Tier 2", "Tier 2.5", "Tier 3", "Tier 3+"];
+const RARITY_OPTIONS = ["All", "Common", "Uncommon", "Rare", "Epic", "Legendary"];
+const SOURCE_OPTIONS = ["All", "Faction", "Illegal Civilian"];
+
 interface WeaponDrugCatalogSectionProps {
   onItemClick: (item: CatalogItem) => void;
 }
@@ -31,19 +36,96 @@ export const WeaponDrugCatalogSection = ({
   const [search, setSearch] = useState("");
   const [activeFilter, setActiveFilter] = useState<FilterType>("ALL");
 
+  // Dropdown Visibility & Click Outside Handling
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  // Applied Filter States
+  const [selectedTier, setSelectedTier] = useState("All");
+  const [selectedRarity, setSelectedRarity] = useState("All");
+  const [selectedSource, setSelectedSource] = useState("All");
+
+  // Temporary Pending States (for edits inside popover before pressing "Apply")
+  const [pendingTier, setPendingTier] = useState("All");
+  const [pendingRarity, setPendingRarity] = useState("All");
+  const [pendingSource, setPendingSource] = useState("All");
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Sync pending states when menu opens
+  const toggleMenu = () => {
+    if (!isMenuOpen) {
+      setPendingTier(selectedTier);
+      setPendingRarity(selectedRarity);
+      setPendingSource(selectedSource);
+    }
+    setIsMenuOpen((prev) => !prev);
+  };
+
+  const handleApplyFilters = () => {
+    setSelectedTier(pendingTier);
+    setSelectedRarity(pendingRarity);
+    setSelectedSource(pendingSource);
+    setIsMenuOpen(false);
+  };
+
+  const handleResetFilters = () => {
+    setPendingTier("All");
+    setPendingRarity("All");
+    setPendingSource("All");
+    setSelectedTier("All");
+    setSelectedRarity("All");
+    setSelectedSource("All");
+  };
+
+  // Calculate Active Filter Count Badge
+  const activeBadgeCount = [
+    selectedTier !== "All",
+    selectedRarity !== "All",
+    selectedSource !== "All",
+  ].filter(Boolean).length;
+
+  // Filter Catalog Items
   const filtered = useMemo(() => {
     const typeFilter = filterTypeMap[activeFilter];
+
     return catalogItems.filter((item) => {
       const matchesType = typeFilter === null || item.type === typeFilter;
       const matchesSearch =
         search.trim() === "" ||
         item.name.toLowerCase().includes(search.toLowerCase()) ||
         item.tags.some((t) => t.toLowerCase().includes(search.toLowerCase()));
-      return matchesType && matchesSearch;
-    });
-  }, [search, activeFilter]);
 
-  // Helper function to show correct icon if image is missing
+      // Tier check (assuming item.tier property exists or matches item tags)
+      const matchesTier =
+        selectedTier === "All" ||
+        (item as any).tier === selectedTier ||
+        item.tags.includes(selectedTier);
+
+      // Rarity check
+      const matchesRarity =
+        selectedRarity === "All" ||
+        item.rarity.toLowerCase() === selectedRarity.toLowerCase();
+
+      // Source/Faction check
+      const matchesSource =
+        selectedSource === "All" ||
+        (item as any).source === selectedSource ||
+        item.tags.some((t) => t.toLowerCase() === selectedSource.toLowerCase());
+
+      return matchesType && matchesSearch && matchesTier && matchesRarity && matchesSource;
+    });
+  }, [search, activeFilter, selectedTier, selectedRarity, selectedSource]);
+
   const getFallbackIcon = (type: ItemType) => {
     switch (type) {
       case "drug": return "💊";
@@ -92,13 +174,18 @@ export const WeaponDrugCatalogSection = ({
           ))}
         </div>
 
-        {/* Right side controls: Filter Button + Search Input */}
-        <div className="flex items-center gap-3 w-full sm:w-auto">
-          {/* New Filter Button */}
+        {/* Right Controls Container */}
+        <div className="relative flex items-center gap-3 w-full sm:w-auto" ref={menuRef}>
+          {/* Filter Trigger Button */}
           <Button
             type="button"
             variant="ghost"
-            className="flex h-10 items-center gap-2 rounded-xl border border-[#161b22] bg-[#0a0d12] px-3.5 text-[#9aa6b2] hover:bg-[#11161d] hover:text-[#f5f7fa]"
+            onClick={toggleMenu}
+            className={`flex h-10 items-center gap-2 rounded-xl border border-[#161b22] px-3.5 transition-all ${
+              isMenuOpen || activeBadgeCount > 0
+                ? "bg-[#121820] text-[#f5f7fa] border-[#b8c7d9]/40"
+                : "bg-[#0a0d12] text-[#9aa6b2] hover:bg-[#11161d] hover:text-[#f5f7fa]"
+            }`}
           >
             <svg
               width="14"
@@ -115,9 +202,112 @@ export const WeaponDrugCatalogSection = ({
             <span className="[font-family:'Inter',Helvetica] text-[13px] font-bold">
               Filter
             </span>
+            {activeBadgeCount > 0 && (
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#1d6bf3] text-[11px] font-bold text-white">
+                {activeBadgeCount}
+              </span>
+            )}
           </Button>
 
-          {/* Search Box */}
+          {/* Filter Popover Menu Dropdown */}
+          {isMenuOpen && (
+            <div className="absolute right-0 top-12 z-50 w-[420px] rounded-2xl border border-[#1d242e] bg-[#0c0f14] p-5 shadow-2xl backdrop-blur-md">
+              <div className="flex items-center justify-between pb-4">
+                <h3 className="[font-family:'Inter',Helvetica] text-sm font-bold text-[#f5f7fa]">
+                  Filter Items
+                </h3>
+                <button
+                  type="button"
+                  onClick={handleResetFilters}
+                  className="text-xs font-normal text-[#9aa6b2] hover:text-[#f5f7fa] transition-colors"
+                >
+                  Reset all
+                </button>
+              </div>
+
+              <div className="flex flex-col gap-5">
+                {/* Tier Group */}
+                <div>
+                  <span className="mb-2 block text-xs font-semibold text-[#8b98a5]">
+                    Tier
+                  </span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {TIER_OPTIONS.map((tier) => (
+                      <button
+                        key={tier}
+                        type="button"
+                        onClick={() => setPendingTier(tier)}
+                        className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
+                          pendingTier === tier
+                            ? "bg-[#e2e8f0] text-[#090d12]"
+                            : "bg-[#141922] text-[#8b98a5] hover:bg-[#1c2330] hover:text-[#f5f7fa]"
+                        }`}
+                      >
+                        {tier}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Rarity Group */}
+                <div>
+                  <span className="mb-2 block text-xs font-semibold text-[#8b98a5]">
+                    Rarity
+                  </span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {RARITY_OPTIONS.map((rarity) => (
+                      <button
+                        key={rarity}
+                        type="button"
+                        onClick={() => setPendingRarity(rarity)}
+                        className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
+                          pendingRarity === rarity
+                            ? "bg-[#e2e8f0] text-[#090d12]"
+                            : "bg-[#141922] text-[#8b98a5] hover:bg-[#1c2330] hover:text-[#f5f7fa]"
+                        }`}
+                      >
+                        {rarity}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Source Group */}
+                <div>
+                  <span className="mb-2 block text-xs font-semibold text-[#8b98a5]">
+                    Source
+                  </span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {SOURCE_OPTIONS.map((source) => (
+                      <button
+                        key={source}
+                        type="button"
+                        onClick={() => setPendingSource(source)}
+                        className={`rounded-lg px-3.5 py-1.5 text-xs font-medium transition-all ${
+                          pendingSource === source
+                            ? "bg-[#e2e8f0] text-[#090d12]"
+                            : "bg-[#141922] text-[#8b98a5] hover:bg-[#1c2330] hover:text-[#f5f7fa]"
+                        }`}
+                      >
+                        {source}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Apply Button */}
+                <Button
+                  type="button"
+                  onClick={handleApplyFilters}
+                  className="mt-2 h-11 w-full rounded-xl bg-[#c5d3e2] text-xs font-bold text-[#090d12] hover:bg-[#e2e8f0] transition-colors"
+                >
+                  Apply Filters
+                </Button>
+              </div>
+            </div>
+          )}
+
+          {/* Search Input Box */}
           <div className="relative w-full max-w-xs">
             <svg
               className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9aa6b2]"
@@ -147,7 +337,7 @@ export const WeaponDrugCatalogSection = ({
 
       {filtered.length === 0 ? (
         <p className="[font-family:'Inter',Helvetica] text-sm text-[#9aa6b2]">
-          No items match your search.
+          No items match your search or filter options.
         </p>
       ) : (
         <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
