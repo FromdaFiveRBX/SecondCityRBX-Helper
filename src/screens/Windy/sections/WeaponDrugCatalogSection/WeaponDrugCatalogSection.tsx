@@ -21,7 +21,7 @@ const filterTypeMap: Record<FilterType, ItemType | null> = {
   DRUGS: "drug",
 };
 
-const TIER_OPTIONS = ["All", "Tier 1", "Tier 1.5", "Tier 2", "Tier 2.5", "Tier 3", "Tier 3+"];
+const TIER_OPTIONS = ["All", "Tier 1", "Tier 1.5", "Tier 2", "Tier 3"];
 const RARITY_OPTIONS = ["All", "Common", "Uncommon", "Rare", "Epic", "Legendary"];
 const SOURCE_OPTIONS = ["All", "Faction", "Illegal Civilian"];
 
@@ -87,11 +87,12 @@ export const WeaponDrugCatalogSection = ({
     selectedSource !== "All",
   ].filter(Boolean).length;
 
+  // --- PRECISE FILTERING LOGIC MATCHING YOUR DATASET ---
   const filtered = useMemo(() => {
     const typeFilter = filterTypeMap[activeFilter];
 
     return catalogItems.filter((item: any) => {
-      // 1. Type Filter
+      // 1. Top Category Filter (Weapons, Attachments, Drugs)
       const matchesType = typeFilter === null || item.type === typeFilter;
 
       // 2. Search Filter
@@ -100,17 +101,16 @@ export const WeaponDrugCatalogSection = ({
         item.name?.toLowerCase().includes(search.toLowerCase()) ||
         (item.tags && item.tags.some((t: string) => t.toLowerCase().includes(search.toLowerCase())));
 
-      // 3. Updated Tier Logic (Handles Decimal Tier 2.5 and Greater-Than Tier 3+)
+      // 3. Tier Filter (Parses number from string like "Tier 1" -> 1)
       let matchesTier = true;
       if (selectedTier !== "All") {
-        const itemTier = Number(item.tier);
-        if (selectedTier === "Tier 2.5") {
-          matchesTier = itemTier === 2.5;
-        } else if (selectedTier === "Tier 3+") {
-          matchesTier = itemTier >= 3;
-        } else {
-          const numericTier = parseFloat(selectedTier.replace(/[^0-9.]/g, ""));
-          matchesTier = !isNaN(numericTier) ? itemTier === numericTier : true;
+        const numericTier = parseFloat(selectedTier.replace(/[^0-9.]/g, ""));
+        if (!isNaN(numericTier)) {
+          if (selectedTier.includes("+")) {
+            matchesTier = item.tier >= numericTier;
+          } else {
+            matchesTier = item.tier === numericTier;
+          }
         }
       }
 
@@ -120,10 +120,11 @@ export const WeaponDrugCatalogSection = ({
         matchesRarity = item.rarity?.toLowerCase() === selectedRarity.toLowerCase();
       }
 
-      // 5. Source / Group Filter
+      // 5. Source / Group Filter ("Faction", "Illegal Civilian", etc.)
       let matchesSource = true;
       if (selectedSource !== "All") {
         const itemGroup = item.group?.toLowerCase() || "";
+        
         if (selectedSource === "Faction") {
           matchesSource = itemGroup === "faction" || itemGroup === "both";
         } else if (selectedSource === "Illegal Civilian") {
@@ -189,7 +190,7 @@ export const WeaponDrugCatalogSection = ({
           ))}
         </div>
 
-        {/* Right Controls Container */}
+        {/* Right Side Controls */}
         <div className="relative flex items-center gap-3 w-full sm:w-auto" ref={menuRef}>
           <Button
             type="button"
@@ -223,7 +224,7 @@ export const WeaponDrugCatalogSection = ({
             )}
           </Button>
 
-          {/* Filter Popover Menu */}
+          {/* Filter Popover */}
           {isMenuOpen && (
             <div className="absolute right-0 top-12 z-50 w-[420px] rounded-2xl border border-[#1d242e] bg-[#0c0f14] p-5 shadow-2xl backdrop-blur-md">
               <div className="flex items-center justify-between pb-4">
@@ -309,6 +310,7 @@ export const WeaponDrugCatalogSection = ({
                   </div>
                 </div>
 
+                {/* Apply Button */}
                 <Button
                   type="button"
                   onClick={handleApplyFilters}
@@ -320,7 +322,7 @@ export const WeaponDrugCatalogSection = ({
             </div>
           )}
 
-          {/* Search Bar */}
+          {/* Search Box */}
           <div className="relative w-full max-w-xs">
             <svg
               className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9aa6b2]"
