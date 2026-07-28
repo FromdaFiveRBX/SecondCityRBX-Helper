@@ -90,6 +90,47 @@ function IconViewSkillInformation() {
     </svg>
   );
 }
+function IconFaction() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path
+        d="M9 1.5L2.25 4.5V8.25C2.25 12.42 5.13 16.26 9 17.25C12.87 16.26 15.75 12.42 15.75 8.25V4.5L9 1.5Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M6.75 9L8.25 10.5L11.25 7.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function IconIllegalCivilian() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path
+        d="M9 2.25C5.82 2.25 3.25 4.82 3.25 8V9.75C3.25 10.58 3.92 11.25 4.75 11.25H13.25C14.08 11.25 14.75 10.58 14.75 9.75V8C14.75 4.82 12.18 2.25 9 2.25Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M3.75 15.75C3.75 13.26 5.76 11.25 8.25 11.25H9.75C12.24 11.25 14.25 13.26 14.25 15.75"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 export const IllegalAreaHeroSection = (): JSX.Element => {
   return (
