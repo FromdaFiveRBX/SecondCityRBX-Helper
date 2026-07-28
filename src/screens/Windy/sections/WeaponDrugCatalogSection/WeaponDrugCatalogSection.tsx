@@ -91,29 +91,57 @@ export const WeaponDrugCatalogSection = ({
             </Button>
           ))}
         </div>
-        <div className="relative w-full max-w-xs">
-          <svg
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9aa6b2]"
-            width="14"
-            height="14"
-            viewBox="0 0 14 14"
-            fill="none"
+
+        {/* Right side controls: Filter Button + Search Input */}
+        <div className="flex items-center gap-3 w-full sm:w-auto">
+          {/* New Filter Button */}
+          <Button
+            type="button"
+            variant="ghost"
+            className="flex h-10 items-center gap-2 rounded-xl border border-[#161b22] bg-[#0a0d12] px-3.5 text-[#9aa6b2] hover:bg-[#11161d] hover:text-[#f5f7fa]"
           >
-            <circle cx="6" cy="6" r="4.5" stroke="currentColor" strokeWidth="1.3" />
-            <path
-              d="M10 10L13 13"
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
               stroke="currentColor"
-              strokeWidth="1.3"
+              strokeWidth="2"
               strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+            </svg>
+            <span className="[font-family:'Inter',Helvetica] text-[13px] font-bold">
+              Filter
+            </span>
+          </Button>
+
+          {/* Search Box */}
+          <div className="relative w-full max-w-xs">
+            <svg
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9aa6b2]"
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+            >
+              <circle cx="6" cy="6" r="4.5" stroke="currentColor" strokeWidth="1.3" />
+              <path
+                d="M10 10L13 13"
+                stroke="currentColor"
+                strokeWidth="1.3"
+                strokeLinecap="round"
+              />
+            </svg>
+            <input
+              type="text"
+              placeholder="Search arsenal..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="h-10 w-full rounded-xl border border-[#161b22] bg-[#0a0d12] pl-9 pr-3 [font-family:'Inter',Helvetica] text-[13px] text-[#f5f7fa] placeholder-[#9aa6b2] outline-none focus:border-[#b8c7d9]/40"
             />
-          </svg>
-          <input
-            type="text"
-            placeholder="Search arsenal..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="h-10 w-full rounded-xl border border-[#161b22] bg-[#0a0d12] pl-9 pr-3 [font-family:'Inter',Helvetica] text-[13px] text-[#f5f7fa] placeholder-[#9aa6b2] outline-none focus:border-[#b8c7d9]/40"
-          />
+          </div>
         </div>
       </div>
 
