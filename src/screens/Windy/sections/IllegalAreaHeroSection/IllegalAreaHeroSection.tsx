@@ -180,7 +180,7 @@ export const IllegalAreaHeroSection = ({
                     : "text-[#9aa6b2] hover:text-[#f5f7fa]"
                 }`}
               >
-                Faction Rewards
+                Faction Member
               </button>
               <button
                 onClick={() => onRoleChange("civilian")}
@@ -190,7 +190,7 @@ export const IllegalAreaHeroSection = ({
                     : "text-[#9aa6b2] hover:text-[#f5f7fa]"
                 }`}
               >
-                Illegal Civilian Rewards
+                Illegal Civilian
               </button>
             </div>
           </header>
