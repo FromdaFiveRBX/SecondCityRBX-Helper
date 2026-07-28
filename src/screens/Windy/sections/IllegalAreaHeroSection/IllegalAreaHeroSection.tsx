@@ -8,6 +8,13 @@ interface IllegalAreaHeroSectionProps {
   onRoleChange: (role: "faction" | "civilian") => void;
 }
 
+// Place the icon placeholders right here:
+const IconOpenSupplyDrop = () => <span>📦</span>;
+const IconViewAllWeapons = () => <span>🔫</span>;
+const IconViewSkillInformation = () => <span>⚡</span>;
+const IconFaction = () => <span>🛡️</span>;
+const IconIllegalCivilian = () => <span>👤</span>;
+
 export const IllegalAreaHeroSection = ({
   selectedRole,
   onRoleChange,
