@@ -151,10 +151,12 @@ export const catalogItems: CatalogItem[] = [
     tags: ["High stopping power", "Secondary"],
     stats: { damage: 45, range: 42, fireRate: 60, recoil: 28 },
   },
+  [
   {
     id: "Actavis",
     name: "Actavis Syrup",
     type: "drug",
+    group: "Faction",
     rarity: "Rare",
     tier: 1,
     description:
@@ -167,6 +169,7 @@ export const catalogItems: CatalogItem[] = [
     id: "Adderall",
     name: "Adderall",
     type: "drug",
+    group: "Faction",
     rarity: "Common",
     tier: 1,
     description:
@@ -179,6 +182,7 @@ export const catalogItems: CatalogItem[] = [
     id: "ALG",
     name: "ALG",
     type: "drug",
+    group: "Faction",
     rarity: "Uncommon",
     tier: 1,
     description:
@@ -191,6 +195,7 @@ export const catalogItems: CatalogItem[] = [
     id: "BlueXanax",
     name: "Blue Xanax",
     type: "drug",
+    group: "Faction",
     rarity: "Uncommon",
     tier: 1,
     description:
@@ -203,6 +208,7 @@ export const catalogItems: CatalogItem[] = [
     id: "BlueDream",
     name: "Blue Dream",
     type: "drug",
+    group: "Faction",
     rarity: "Common",
     tier: 1,
     description:
@@ -215,6 +221,7 @@ export const catalogItems: CatalogItem[] = [
     id: "Cocaine",
     name: "Cocaine",
     type: "drug",
+    group: "Faction",
     rarity: "Rare",
     tier: 1,
     description:
@@ -227,6 +234,7 @@ export const catalogItems: CatalogItem[] = [
     id: "CodeineSyrup",
     name: "Codeine Syrup",
     type: "drug",
+    group: "Faction",
     rarity: "Uncommon",
     tier: 1,
     description:
@@ -239,6 +247,7 @@ export const catalogItems: CatalogItem[] = [
     id: "Crack",
     name: "Crack",
     type: "drug",
+    group: "Faction",
     rarity: "Rare",
     tier: 1,
     description:
@@ -251,6 +260,7 @@ export const catalogItems: CatalogItem[] = [
     id: "Flakka",
     name: "Flakka",
     type: "drug",
+    group: "Faction",
     rarity: "Epic",
     tier: 1,
     description:
@@ -263,6 +273,7 @@ export const catalogItems: CatalogItem[] = [
     id: "GGPill",
     name: "GG Pill",
     type: "drug",
+    group: "Faction",
     rarity: "Uncommon",
     tier: 1,
     description:
@@ -275,6 +286,7 @@ export const catalogItems: CatalogItem[] = [
     id: "Grenades",
     name: "Grenades",
     type: "drug",
+    group: "Faction",
     rarity: "Uncommon",
     tier: 1,
     description:
@@ -287,6 +299,7 @@ export const catalogItems: CatalogItem[] = [
     id: "Heroin",
     name: "Heroin",
     type: "drug",
+    group: "Faction",
     rarity: "Legendary",
     tier: 1,
     description:
@@ -299,6 +312,7 @@ export const catalogItems: CatalogItem[] = [
     id: "HiTecSyrup",
     name: "Hi-Tec Syrup",
     type: "drug",
+    group: "Faction",
     rarity: "Uncommon",
     tier: 1,
     description:
@@ -311,6 +325,7 @@ export const catalogItems: CatalogItem[] = [
     id: "Hydrocodone",
     name: "Hydrocodone",
     type: "drug",
+    group: "Faction",
     rarity: "Common",
     tier: 1,
     description:
@@ -323,6 +338,7 @@ export const catalogItems: CatalogItem[] = [
     id: "Hydrocodone30",
     name: "Hydrocodone 30",
     type: "drug",
+    group: "Faction",
     rarity: "Uncommon",
     tier: 1,
     description:
@@ -335,6 +351,7 @@ export const catalogItems: CatalogItem[] = [
     id: "K2",
     name: "K2",
     type: "drug",
+    group: "Faction",
     rarity: "Common",
     tier: 1,
     description:
@@ -347,6 +364,7 @@ export const catalogItems: CatalogItem[] = [
     id: "Ketamine",
     name: "Ketamine",
     type: "drug",
+    group: "Faction",
     rarity: "Rare",
     tier: 1,
     description:
@@ -359,6 +377,7 @@ export const catalogItems: CatalogItem[] = [
     id: "LSDAcid",
     name: "LSD (Acid)",
     type: "drug",
+    group: "Faction",
     rarity: "Rare",
     tier: 1,
     description:
@@ -371,6 +390,7 @@ export const catalogItems: CatalogItem[] = [
     id: "MDMA",
     name: "MDMA",
     type: "drug",
+    group: "Faction",
     rarity: "Rare",
     tier: 1,
     description:
@@ -383,6 +403,7 @@ export const catalogItems: CatalogItem[] = [
     id: "Methamphetamine",
     name: "Methamphetamine",
     type: "drug",
+    group: "Faction",
     rarity: "Epic",
     tier: 1,
     description:
@@ -395,6 +416,7 @@ export const catalogItems: CatalogItem[] = [
     id: "OGKush",
     name: "OG Kush",
     type: "drug",
+    group: "Faction",
     rarity: "Common",
     tier: 1,
     description:
@@ -407,6 +429,7 @@ export const catalogItems: CatalogItem[] = [
     id: "Opioids",
     name: "Opioids",
     type: "drug",
+    group: "Faction",
     rarity: "Uncommon",
     tier: 1,
     description:
@@ -419,6 +442,7 @@ export const catalogItems: CatalogItem[] = [
     id: "PurpleOxycodone",
     name: "Purple Oxycodone",
     type: "drug",
+    group: "Faction",
     rarity: "Uncommon",
     tier: 1,
     description:
@@ -431,6 +455,7 @@ export const catalogItems: CatalogItem[] = [
     id: "Oxycodone",
     name: "Oxycodone",
     type: "drug",
+    group: "Faction",
     rarity: "Common",
     tier: 1,
     description:
@@ -443,6 +468,7 @@ export const catalogItems: CatalogItem[] = [
     id: "Oxycodone90",
     name: "Oxycodone 90",
     type: "drug",
+    group: "Faction",
     rarity: "Rare",
     tier: 1,
     description:
@@ -455,6 +481,7 @@ export const catalogItems: CatalogItem[] = [
     id: "Oxycodons",
     name: "Oxycodons",
     type: "drug",
+    group: "Faction",
     rarity: "Common",
     tier: 1,
     description:
@@ -467,6 +494,7 @@ export const catalogItems: CatalogItem[] = [
     id: "PCP",
     name: "PCP",
     type: "drug",
+    group: "Faction",
     rarity: "Rare",
     tier: 1,
     description:
@@ -479,6 +507,7 @@ export const catalogItems: CatalogItem[] = [
     id: "Percocet",
     name: "Percocet",
     type: "drug",
+    group: "Faction",
     rarity: "Common",
     tier: 1,
     description:
@@ -491,6 +520,7 @@ export const catalogItems: CatalogItem[] = [
     id: "PurpleHaze",
     name: "Purple Haze",
     type: "drug",
+    group: "Faction",
     rarity: "Common",
     tier: 1,
     description:
@@ -503,6 +533,7 @@ export const catalogItems: CatalogItem[] = [
     id: "Shrooms",
     name: "Shrooms",
     type: "drug",
+    group: "Faction",
     rarity: "Uncommon",
     tier: 1,
     description:
@@ -515,6 +546,7 @@ export const catalogItems: CatalogItem[] = [
     id: "SourDiesel",
     name: "Sour Diesel",
     type: "drug",
+    group: "Faction",
     rarity: "Common",
     tier: 1,
     description:
@@ -527,6 +559,7 @@ export const catalogItems: CatalogItem[] = [
     id: "Spice",
     name: "Spice",
     type: "drug",
+    group: "Faction",
     rarity: "Common",
     tier: 1,
     description:
@@ -539,6 +572,7 @@ export const catalogItems: CatalogItem[] = [
     id: "SpongeBobs",
     name: "Spongebobs",
     type: "drug",
+    group: "Faction",
     rarity: "Uncommon",
     tier: 1,
     description:
@@ -551,6 +585,7 @@ export const catalogItems: CatalogItem[] = [
     id: "Steroids",
     name: "Steroids",
     type: "drug",
+    group: "Faction",
     rarity: "Rare",
     tier: 1,
     description:
@@ -563,6 +598,7 @@ export const catalogItems: CatalogItem[] = [
     id: "Supermans",
     name: "Supermans",
     type: "drug",
+    group: "Faction",
     rarity: "Uncommon",
     tier: 1,
     description:
@@ -575,6 +611,7 @@ export const catalogItems: CatalogItem[] = [
     id: "Telsas",
     name: "Telsas",
     type: "drug",
+    group: "Faction",
     rarity: "Uncommon",
     tier: 1,
     description:
@@ -587,6 +624,7 @@ export const catalogItems: CatalogItem[] = [
     id: "THCWax",
     name: "THC Wax",
     type: "drug",
+    group: "Faction",
     rarity: "Common",
     tier: 1,
     description:
@@ -599,6 +637,7 @@ export const catalogItems: CatalogItem[] = [
     id: "Whippets",
     name: "Whippets",
     type: "drug",
+    group: "Faction",
     rarity: "Common",
     tier: 1,
     description:
@@ -611,6 +650,7 @@ export const catalogItems: CatalogItem[] = [
     id: "Xanax",
     name: "Xanax",
     type: "drug",
+    group: "Faction",
     rarity: "Common",
     tier: 1,
     description:
@@ -619,7 +659,8 @@ export const catalogItems: CatalogItem[] = [
     image: "https://fromdafiverbx.github.io/SecondCityRBX-Helper/Xanax.png",
     stats: { duration: "300s", effect: "Health regen, slowed movement", weight: "0.05 kg" },
   },
-  
+
+    
   {
     id: "oxy",
     name: "Oxy Pills",
