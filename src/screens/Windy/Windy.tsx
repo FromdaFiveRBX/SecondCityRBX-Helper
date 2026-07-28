@@ -10,6 +10,12 @@ import { WeaponDrugCatalogSection } from "./sections/WeaponDrugCatalogSection/We
 export const Windy = (): JSX.Element => {
   const [modalItem, setModalItem] = useState<CatalogItem | null>(null);
   const [drugQuantity, setDrugQuantity] = useState<string | undefined>();
+  
+  // State for role filtering
+  const [selectedRole, setSelectedRole] = useState<"faction" | "civilian">("faction");
+
+  // Map "civilian" to the group name in item data ("Illegal Civilian")
+  const activeGroup = selectedRole === "faction" ? "Faction" : "Illegal Civilian";
 
   const handleItemSelected = (item: CatalogItem, quantity?: string) => {
     setModalItem(item);
@@ -23,17 +29,26 @@ export const Windy = (): JSX.Element => {
 
   return (
     <main className="w-full bg-[#050607] text-[#f7f5f2]">
-      <IllegalAreaHeroSection />
+      <IllegalAreaHeroSection
+        selectedRole={selectedRole}
+        onRoleChange={setSelectedRole}
+      />
+
       <div className="mx-auto w-full max-w-[1440px] px-2 sm:px-3">
         <div className="h-[5px] w-full bg-[#161b22]" />
       </div>
+
       <section
         id="supply-drop"
         className="mx-auto flex w-full max-w-[1440px] scroll-mt-6 flex-col gap-6 px-2 py-4 sm:px-3"
       >
-        <RandomWheelRewardsSection onItemSelected={handleItemSelected} />
+        <RandomWheelRewardsSection
+          activeGroup={activeGroup}
+          onItemSelected={handleItemSelected}
+        />
         <div className="h-[3px] w-full bg-[#161b22]" />
       </section>
+
       <FactionSkillGuideSection />
       <WeaponDrugCatalogSection onItemClick={setModalItem} />
       <AttributeUpgradesSection />
