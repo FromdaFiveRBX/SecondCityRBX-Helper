@@ -676,7 +676,7 @@ export const catalogItems: CatalogItem[] = [
     id: "oxy",
     name: "Oxy Pills",
     type: "drug",
-    group: "Illegal Civilian",
+    group: "civilian",
     rarity: "Common",
     tier: 1,
     description:
@@ -688,7 +688,7 @@ export const catalogItems: CatalogItem[] = [
     id: "cocaine",
     name: "Cocaine Bag",
     type: "drug",
-    group: "Illegal Civilian",
+    group: "civilian",
     rarity: "Rare",
     tier: 2,
     description:
@@ -700,7 +700,7 @@ export const catalogItems: CatalogItem[] = [
     id: "meth",
     name: "Meth Shard",
     type: "drug",
-    group: "Illegal Civilian",
+    group: "civilian",
     rarity: "Epic",
     tier: 2,
     description:
@@ -712,7 +712,7 @@ export const catalogItems: CatalogItem[] = [
     id: "weed",
     name: "Weed Bag",
     type: "drug",
-    group: "Illegal Civilian",
+    group: "civilian",
     rarity: "Common",
     tier: 1,
     description:
@@ -724,7 +724,7 @@ export const catalogItems: CatalogItem[] = [
     id: "Percocet30",
     name: "Percocet 30",
     type: "drug",
-    group: "Illegal Civilian",
+    group: "civilian",
     rarity: "Uncommon",
     tier: 1,
     description:
