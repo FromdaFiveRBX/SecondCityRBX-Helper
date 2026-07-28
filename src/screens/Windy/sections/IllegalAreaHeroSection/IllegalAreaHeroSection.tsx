@@ -136,7 +136,6 @@ function IconIllegalCivilian() {
 import React, { useState } from "react";
 
 export const IllegalAreaHeroSection = (): JSX.Element => {
-  // Added state to track active role button
   const [selectedRole, setSelectedRole] = useState<"faction" | "civilian">("faction");
 
   return (
@@ -209,8 +208,8 @@ export const IllegalAreaHeroSection = (): JSX.Element => {
               </div>
             </nav>
 
-            {/* --- SELECT ROLE TOGGLE SWITCH ADDED HERE --- */}
-            <div className="flex flex-col items-start pt-10">
+            {/* --- CENTERED SELECT ROLE TOGGLE SWITCH --- */}
+            <div className="flex w-full flex-col items-center justify-center pt-12 text-center">
               <span className="mb-3 text-xs font-bold tracking-[0.15em] text-[#b8c7d9]/60 uppercase">
                 SELECT ROLE
               </span>
@@ -242,7 +241,7 @@ export const IllegalAreaHeroSection = (): JSX.Element => {
                 </button>
               </div>
             </div>
-            {/* ------------------------------------------- */}
+            {/* ----------------------------------------- */}
 
           </header>
         </div>
