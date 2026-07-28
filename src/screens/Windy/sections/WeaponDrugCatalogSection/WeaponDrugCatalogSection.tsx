@@ -21,7 +21,6 @@ const filterTypeMap: Record<FilterType, ItemType | null> = {
   DRUGS: "drug",
 };
 
-// Filter options matching mockups
 const TIER_OPTIONS = ["All", "Tier 1", "Tier 1.5", "Tier 2", "Tier 2.5", "Tier 3", "Tier 3+"];
 const RARITY_OPTIONS = ["All", "Common", "Uncommon", "Rare", "Epic", "Legendary"];
 const SOURCE_OPTIONS = ["All", "Faction", "Illegal Civilian"];
@@ -36,21 +35,17 @@ export const WeaponDrugCatalogSection = ({
   const [search, setSearch] = useState("");
   const [activeFilter, setActiveFilter] = useState<FilterType>("ALL");
 
-  // Dropdown Visibility & Click Outside Handling
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  // Applied Filter States
   const [selectedTier, setSelectedTier] = useState("All");
   const [selectedRarity, setSelectedRarity] = useState("All");
   const [selectedSource, setSelectedSource] = useState("All");
 
-  // Temporary Pending States (for edits inside popover before pressing "Apply")
   const [pendingTier, setPendingTier] = useState("All");
   const [pendingRarity, setPendingRarity] = useState("All");
   const [pendingSource, setPendingSource] = useState("All");
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
@@ -61,7 +56,6 @@ export const WeaponDrugCatalogSection = ({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Sync pending states when menu opens
   const toggleMenu = () => {
     if (!isMenuOpen) {
       setPendingTier(selectedTier);
@@ -87,40 +81,62 @@ export const WeaponDrugCatalogSection = ({
     setSelectedSource("All");
   };
 
-  // Calculate Active Filter Count Badge
   const activeBadgeCount = [
     selectedTier !== "All",
     selectedRarity !== "All",
     selectedSource !== "All",
   ].filter(Boolean).length;
 
-  // Filter Catalog Items
+  // --- PRECISE FILTERING LOGIC MATCHING YOUR DATASET ---
   const filtered = useMemo(() => {
     const typeFilter = filterTypeMap[activeFilter];
 
-    return catalogItems.filter((item) => {
+    return catalogItems.filter((item: any) => {
+      // 1. Top Category Filter (Weapons, Attachments, Drugs)
       const matchesType = typeFilter === null || item.type === typeFilter;
+
+      // 2. Search Filter
       const matchesSearch =
         search.trim() === "" ||
-        item.name.toLowerCase().includes(search.toLowerCase()) ||
-        item.tags.some((t) => t.toLowerCase().includes(search.toLowerCase()));
+        item.name?.toLowerCase().includes(search.toLowerCase()) ||
+        (item.tags && item.tags.some((t: string) => t.toLowerCase().includes(search.toLowerCase())));
 
-      // Tier check (assuming item.tier property exists or matches item tags)
-      const matchesTier =
-        selectedTier === "All" ||
-        (item as any).tier === selectedTier ||
-        item.tags.includes(selectedTier);
+      // 3. Tier Filter (Parses number from string like "Tier 1" -> 1)
+      let matchesTier = true;
+      if (selectedTier !== "All") {
+        const numericTier = parseFloat(selectedTier.replace(/[^0-9.]/g, ""));
+        if (!isNaN(numericTier)) {
+          if (selectedTier.includes("+")) {
+            matchesTier = item.tier >= numericTier;
+          } else {
+            matchesTier = item.tier === numericTier;
+          }
+        }
+      }
 
-      // Rarity check
-      const matchesRarity =
-        selectedRarity === "All" ||
-        item.rarity.toLowerCase() === selectedRarity.toLowerCase();
+      // 4. Rarity Filter
+      let matchesRarity = true;
+      if (selectedRarity !== "All") {
+        matchesRarity = item.rarity?.toLowerCase() === selectedRarity.toLowerCase();
+      }
 
-      // Source/Faction check
-      const matchesSource =
-        selectedSource === "All" ||
-        (item as any).source === selectedSource ||
-        item.tags.some((t) => t.toLowerCase() === selectedSource.toLowerCase());
+      // 5. Source / Group Filter ("Faction", "Illegal Civilian", etc.)
+      let matchesSource = true;
+      if (selectedSource !== "All") {
+        const itemGroup = item.group?.toLowerCase() || "";
+        
+        if (selectedSource === "Faction") {
+          matchesSource = itemGroup === "faction" || itemGroup === "both";
+        } else if (selectedSource === "Illegal Civilian") {
+          matchesSource = 
+            itemGroup === "illegal civilian" || 
+            itemGroup === "civilian" || 
+            itemGroup === "illegal" || 
+            itemGroup === "both";
+        } else {
+          matchesSource = itemGroup === selectedSource.toLowerCase();
+        }
+      }
 
       return matchesType && matchesSearch && matchesTier && matchesRarity && matchesSource;
     });
@@ -174,9 +190,8 @@ export const WeaponDrugCatalogSection = ({
           ))}
         </div>
 
-        {/* Right Controls Container */}
+        {/* Right Side Controls */}
         <div className="relative flex items-center gap-3 w-full sm:w-auto" ref={menuRef}>
-          {/* Filter Trigger Button */}
           <Button
             type="button"
             variant="ghost"
@@ -209,7 +224,7 @@ export const WeaponDrugCatalogSection = ({
             )}
           </Button>
 
-          {/* Filter Popover Menu Dropdown */}
+          {/* Filter Popover */}
           {isMenuOpen && (
             <div className="absolute right-0 top-12 z-50 w-[420px] rounded-2xl border border-[#1d242e] bg-[#0c0f14] p-5 shadow-2xl backdrop-blur-md">
               <div className="flex items-center justify-between pb-4">
@@ -226,7 +241,7 @@ export const WeaponDrugCatalogSection = ({
               </div>
 
               <div className="flex flex-col gap-5">
-                {/* Tier Group */}
+                {/* Tier Selection */}
                 <div>
                   <span className="mb-2 block text-xs font-semibold text-[#8b98a5]">
                     Tier
@@ -249,7 +264,7 @@ export const WeaponDrugCatalogSection = ({
                   </div>
                 </div>
 
-                {/* Rarity Group */}
+                {/* Rarity Selection */}
                 <div>
                   <span className="mb-2 block text-xs font-semibold text-[#8b98a5]">
                     Rarity
@@ -272,7 +287,7 @@ export const WeaponDrugCatalogSection = ({
                   </div>
                 </div>
 
-                {/* Source Group */}
+                {/* Source Selection */}
                 <div>
                   <span className="mb-2 block text-xs font-semibold text-[#8b98a5]">
                     Source
@@ -307,7 +322,7 @@ export const WeaponDrugCatalogSection = ({
             </div>
           )}
 
-          {/* Search Input Box */}
+          {/* Search Box */}
           <div className="relative w-full max-w-xs">
             <svg
               className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9aa6b2]"
@@ -373,7 +388,7 @@ export const WeaponDrugCatalogSection = ({
                   {item.description}
                 </p>
                 <div className="mt-auto flex flex-wrap items-start gap-2 pt-5">
-                  {item.tags.map((tag) => (
+                  {item.tags?.map((tag: string) => (
                     <Badge
                       key={`${item.id}-${tag}`}
                       className="rounded-xl border border-solid border-[#161b22] bg-[#0a0d12] px-2.5 py-2 [font-family:'Inter',Helvetica] text-xs font-bold leading-[normal] tracking-[0] text-[#f5f7fa] hover:bg-[#0a0d12]"
