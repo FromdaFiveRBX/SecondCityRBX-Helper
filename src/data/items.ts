@@ -32,10 +32,11 @@ export interface CatalogItem {
 }
 
 export const catalogItems: CatalogItem[] = [
-  {
+{
     id: "glock-19",
     name: "Glock 19",
     type: "weapon",
+    group: "Both",
     rarity: "Common",
     tier: 1,
     description:
@@ -44,10 +45,11 @@ export const catalogItems: CatalogItem[] = [
     image: "/glock-19.png",
     stats: { damage: 28, range: 35, fireRate: 72, recoil: 20 },
   },
-    {
+  {
     id: "glock-9g",
     name: "Glock 19",
     type: "weapon",
+    group: "Both",
     rarity: "Common",
     tier: 1,
     description:
@@ -60,6 +62,7 @@ export const catalogItems: CatalogItem[] = [
     id: "draco-t1",
     name: "Micro Draco",
     type: "weapon",
+    group: "Both",
     rarity: "Rare",
     tier: 1,
     description:
@@ -77,6 +80,7 @@ export const catalogItems: CatalogItem[] = [
     id: "mini-smg",
     name: "Mini SMG",
     type: "weapon",
+    group: "Both",
     rarity: "Rare",
     tier: 1.5,
     description:
@@ -89,6 +93,7 @@ export const catalogItems: CatalogItem[] = [
     id: "combat-pistol",
     name: "Combat Pistol",
     type: "weapon",
+    group: "Both",
     rarity: "Common",
     tier: 1,
     description:
@@ -100,6 +105,7 @@ export const catalogItems: CatalogItem[] = [
     id: "carbine-rifle",
     name: "Carbine Rifle",
     type: "weapon",
+    group: "Both",
     rarity: "Epic",
     tier: 2,
     description:
@@ -111,6 +117,7 @@ export const catalogItems: CatalogItem[] = [
     id: "special-carbine",
     name: "Special Carbine",
     type: "weapon",
+    group: "Both",
     rarity: "Epic",
     tier: 2,
     description:
@@ -122,6 +129,7 @@ export const catalogItems: CatalogItem[] = [
     id: "pump-shotgun",
     name: "Pump Shotgun",
     type: "weapon",
+    group: "Both",
     rarity: "Uncommon",
     tier: 1.5,
     description:
@@ -133,6 +141,7 @@ export const catalogItems: CatalogItem[] = [
     id: "smg",
     name: "SMG",
     type: "weapon",
+    group: "Both",
     rarity: "Uncommon",
     tier: 1.5,
     description:
@@ -144,6 +153,7 @@ export const catalogItems: CatalogItem[] = [
     id: "heavy-pistol",
     name: "Heavy Pistol",
     type: "weapon",
+    group: "Both",
     rarity: "Rare",
     tier: 2,
     description:
@@ -151,7 +161,8 @@ export const catalogItems: CatalogItem[] = [
     tags: ["High stopping power", "Secondary"],
     stats: { damage: 45, range: 42, fireRate: 60, recoil: 28 },
   },
-  [
+
+  
   {
     id: "Actavis",
     name: "Actavis Syrup",
