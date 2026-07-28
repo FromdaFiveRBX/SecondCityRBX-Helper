@@ -141,6 +141,7 @@ export const IllegalAreaHeroSection = (): JSX.Element => {
   return (
     <section className="relative w-full overflow-hidden">
       <div className="relative min-h-[843px] w-full">
+        {/* Background Layers */}
         <div className="absolute inset-0 opacity-[0.42]">
           <div className="absolute inset-0 [background:url(..//illegal-area-background.png)_50%_50%_/_cover]" />
           <img
@@ -162,7 +163,11 @@ export const IllegalAreaHeroSection = (): JSX.Element => {
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,6,7,0.53)_0%,rgba(5,6,7,0.3)_40%,rgba(5,6,7,0.47)_100%)] opacity-50" />
         <div className="absolute inset-0 opacity-[0.18] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,255,255,0.06)_3%,rgba(255,255,255,0)_3%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,7,10,0.22)_0%,rgba(5,7,10,0.58)_58%,rgba(5,7,10,0.75)_100%)]" />
-        <div className="relative mx-auto flex min-h-[843px] w-full max-w-[1440px] items-start px-4 pb-24 pt-20 sm:px-6 md:px-8 md:pb-[87px] md:pt-24">
+
+        {/* Hero Content Grid */}
+        <div className="relative mx-auto flex min-h-[843px] w-full max-w-[1440px] flex-col justify-between px-4 pb-12 pt-20 sm:px-6 md:px-8 md:pt-24">
+          
+          {/* Main Hero Left Content */}
           <header className="flex w-full max-w-[860px] flex-col items-start">
             <Badge className="h-auto rounded-xl border-none bg-transparent px-3.5 py-2 [font-family:'Inter',Helvetica] text-xs font-bold tracking-[0.48px] text-[#f5f7fa] hover:bg-transparent">
               <span className="mr-2 inline-flex shrink-0 items-center">
@@ -207,43 +212,43 @@ export const IllegalAreaHeroSection = (): JSX.Element => {
                 </a>
               </div>
             </nav>
-
-            {/* --- CENTERED SELECT ROLE TOGGLE SWITCH --- */}
-            <div className="flex w-full flex-col items-center justify-center pt-12 text-center">
-              <span className="mb-3 text-xs font-bold tracking-[0.15em] text-[#b8c7d9]/60 uppercase">
-                SELECT ROLE
-              </span>
-              <div className="inline-flex rounded-full border border-[#161b22] bg-[#080b10]/90 p-1.5 backdrop-blur-md">
-                <button
-                  type="button"
-                  onClick={() => setSelectedRole("faction")}
-                  className={`inline-flex items-center gap-2.5 rounded-full px-7 py-3 text-[14px] font-bold transition-all duration-200 ${
-                    selectedRole === "faction"
-                      ? "bg-[#c8d6e5] text-[#080b10] shadow-md"
-                      : "text-[#f5f7fa]/70 hover:text-[#f5f7fa]"
-                  }`}
-                >
-                  <IconFaction />
-                  <span>FACTION</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setSelectedRole("civilian")}
-                  className={`inline-flex items-center gap-2.5 rounded-full px-7 py-3 text-[14px] font-bold transition-all duration-200 ${
-                    selectedRole === "civilian"
-                      ? "bg-[#c8d6e5] text-[#080b10] shadow-md"
-                      : "text-[#f5f7fa]/70 hover:text-[#f5f7fa]"
-                  }`}
-                >
-                  <IconIllegalCivilian />
-                  <span>ILLEGAL CIVILIAN</span>
-                </button>
-              </div>
-            </div>
-            {/* ----------------------------------------- */}
-
           </header>
+
+          {/* --- PERFECTLY CENTERED ROLE TOGGLE SWITCH --- */}
+          <div className="flex w-full flex-col items-center justify-center pt-10 text-center">
+            <span className="mb-3 text-xs font-bold tracking-[0.15em] text-[#b8c7d9]/60 uppercase">
+              SELECT ROLE
+            </span>
+            <div className="inline-flex rounded-full border border-[#161b22] bg-[#080b10]/90 p-1.5 backdrop-blur-md">
+              <button
+                type="button"
+                onClick={() => setSelectedRole("faction")}
+                className={`inline-flex items-center gap-2.5 rounded-full px-7 py-3 text-[14px] font-bold transition-all duration-200 ${
+                  selectedRole === "faction"
+                    ? "bg-[#c8d6e5] text-[#080b10] shadow-md"
+                    : "text-[#f5f7fa]/70 hover:text-[#f5f7fa]"
+                }`}
+              >
+                <IconFaction />
+                <span>FACTION</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setSelectedRole("civilian")}
+                className={`inline-flex items-center gap-2.5 rounded-full px-7 py-3 text-[14px] font-bold transition-all duration-200 ${
+                  selectedRole === "civilian"
+                    ? "bg-[#c8d6e5] text-[#080b10] shadow-md"
+                    : "text-[#f5f7fa]/70 hover:text-[#f5f7fa]"
+                }`}
+              >
+                <IconIllegalCivilian />
+                <span>ILLEGAL CIVILIAN</span>
+              </button>
+            </div>
+          </div>
+          {/* --------------------------------------------- */}
+
         </div>
       </div>
     </section>
