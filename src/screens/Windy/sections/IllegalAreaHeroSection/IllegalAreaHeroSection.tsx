@@ -118,7 +118,7 @@ export const IllegalAreaHeroSection = (): JSX.Element => {
       <div className="mx-auto max-w-7xl space-y-8">
         <div className="space-y-3">
           <h1 className="text-4xl font-extrabold tracking-tight text-white md:text-5xl">
-            Second City <span className="text-xs uppercase tracking-widest text-[#b8c7d9]/60">RBX</span> Illegal Area
+            Second City <span className="text-xs uppercase tracking-widest text-[#b8c7d9]/60">RBX2</span> Illegal Area
           </h1>
           <p className="max-w-xl text-[15px] font-medium leading-relaxed text-[#b8c7d9]/80">
             Browse supply drops, skill information, and all firearms and drugs Second City RBX has to offer.
