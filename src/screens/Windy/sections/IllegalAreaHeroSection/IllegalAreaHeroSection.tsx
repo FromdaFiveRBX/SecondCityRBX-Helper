@@ -164,10 +164,8 @@ export const IllegalAreaHeroSection = (): JSX.Element => {
         <div className="absolute inset-0 opacity-[0.18] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,255,255,0.06)_3%,rgba(255,255,255,0)_3%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,7,10,0.22)_0%,rgba(5,7,10,0.58)_58%,rgba(5,7,10,0.75)_100%)]" />
 
-        {/* Hero Content Grid */}
-        <div className="relative mx-auto flex min-h-[843px] w-full max-w-[1440px] flex-col justify-between px-4 pb-12 pt-20 sm:px-6 md:px-8 md:pt-24">
-          
-          {/* Main Hero Left Content */}
+        {/* Hero Content (Restored to exact original layout) */}
+        <div className="relative mx-auto flex min-h-[843px] w-full max-w-[1440px] items-start px-4 pb-24 pt-20 sm:px-6 md:px-8 md:pb-[87px] md:pt-24">
           <header className="flex w-full max-w-[860px] flex-col items-start">
             <Badge className="h-auto rounded-xl border-none bg-transparent px-3.5 py-2 [font-family:'Inter',Helvetica] text-xs font-bold tracking-[0.48px] text-[#f5f7fa] hover:bg-transparent">
               <span className="mr-2 inline-flex shrink-0 items-center">
@@ -214,8 +212,8 @@ export const IllegalAreaHeroSection = (): JSX.Element => {
             </nav>
           </header>
 
-          {/* --- PERFECTLY CENTERED ROLE TOGGLE SWITCH --- */}
-          <div className="flex w-full flex-col items-center justify-center pt-10 text-center">
+          {/* --- ABSOLUTELY POSITIONED ROLE TOGGLE SWITCH --- */}
+          <div className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center justify-center text-center">
             <span className="mb-3 text-xs font-bold tracking-[0.15em] text-[#b8c7d9]/60 uppercase">
               SELECT ROLE
             </span>
@@ -247,7 +245,7 @@ export const IllegalAreaHeroSection = (): JSX.Element => {
               </button>
             </div>
           </div>
-          {/* --------------------------------------------- */}
+          {/* ----------------------------------------------- */}
 
         </div>
       </div>
