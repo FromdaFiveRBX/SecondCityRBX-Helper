@@ -247,10 +247,6 @@ export const catalogItems: CatalogItem[] = [
     image: "https://fromdafiverbx.github.io/SecondCityRBX-Helper/Crack.png",
     stats: { duration: "180s", effect: "Reactive armor, melee damage", weight: "0.1 kg" },
   },
-  Here are the JSON data objects for this next batch of images, matching your structure:
-
-JavaScript
-[
   {
     id: "Flakka",
     name: "Flakka",
