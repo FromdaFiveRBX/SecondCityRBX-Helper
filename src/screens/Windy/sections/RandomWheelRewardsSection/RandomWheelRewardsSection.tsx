@@ -100,7 +100,7 @@ function SlotItem({ item, isDice, isHighlighted, isResult, onClick }: SlotItemPr
               <img src={item.image} alt={item.name} className="h-10 w-auto object-contain" />
             ) : (
               <span className="text-2xl">
-                {item.type === "drug" ? "\uD83D\uDC8A" : "\uD83D\uDD2B"}
+                {item.type === "drug" ? "💊" : "🔫"}
               </span>
             )}
           </div>
@@ -120,10 +120,12 @@ function SlotItem({ item, isDice, isHighlighted, isResult, onClick }: SlotItemPr
 
 interface RandomWheelRewardsSectionProps {
   onItemSelected: (item: CatalogItem, quantity?: string) => void;
+  activeGroup?: string; // e.g. "Faction", "Mafia", etc.
 }
 
 export const RandomWheelRewardsSection = ({
   onItemSelected,
+  activeGroup = "Faction", // Pass your current selected group state as a prop here
 }: RandomWheelRewardsSectionProps): JSX.Element => {
   const [activeTierValue, setActiveTierValue] = useState("tier-1");
   const [activeCategoryValue, setActiveCategoryValue] = useState("firearms");
@@ -143,9 +145,15 @@ export const RandomWheelRewardsSection = ({
   const activeCategory = categoryOptions.find((c) => c.value === activeCategoryValue)!.type;
   const isDrugMode = activeCategory === "drug";
 
+  // Filter pool by Tier, Category, and matching Group ("Faction" or "Both")
   const getPool = useCallback(
-    (tier: Tier, category: ItemType) =>
-      catalogItems.filter((item) => item.tier === tier && item.type === category),
+    (tier: Tier, category: ItemType, group: string) =>
+      catalogItems.filter(
+        (item) =>
+          item.tier === tier &&
+          item.type === category &&
+          (item.group === group || item.group === "Both")
+      ),
     [],
   );
 
@@ -159,8 +167,8 @@ export const RandomWheelRewardsSection = ({
   }, []);
 
   const refreshSlots = useCallback(
-    (tier: Tier, category: ItemType) => {
-      const pool = getPool(tier, category);
+    (tier: Tier, category: ItemType, group: string) => {
+      const pool = getPool(tier, category, group);
       const shuffled = getRandomItems(pool, pool.length);
       const start = shuffled.length ? Math.floor(Math.random() * shuffled.length) : 0;
       setSlots(buildSlotsFromPool(shuffled, start));
@@ -171,8 +179,8 @@ export const RandomWheelRewardsSection = ({
   );
 
   useEffect(() => {
-    refreshSlots(activeTier, activeCategory);
-  }, [activeTier, activeCategory, refreshSlots]);
+    refreshSlots(activeTier, activeCategory, activeGroup);
+  }, [activeTier, activeCategory, activeGroup, refreshSlots]);
 
   const clearTimer = useCallback(() => {
     if (timeoutRef.current) {
@@ -219,7 +227,7 @@ export const RandomWheelRewardsSection = ({
 
   const handleRoll = useCallback(async () => {
     if (isSpinning) return;
-    const pool = getPool(activeTier, activeCategory);
+    const pool = getPool(activeTier, activeCategory, activeGroup);
     if (pool.length === 0) return;
 
     sequenceCancelledRef.current = false;
@@ -265,7 +273,7 @@ export const RandomWheelRewardsSection = ({
       setCurrentSpin(0);
       setTotalSpins(0);
     }
-  }, [activeTier, activeCategory, getPool, isDrugMode, isSpinning, onItemSelected, runSingleSpin]);
+  }, [activeTier, activeCategory, activeGroup, getPool, isDrugMode, isSpinning, onItemSelected, runSingleSpin]);
 
   const handleTierChange = (value: string) => {
     if (isSpinning) return;
@@ -393,7 +401,7 @@ export const RandomWheelRewardsSection = ({
                       <img src={item.image} alt={item.name} className="h-full w-full object-contain" />
                     ) : (
                       <span className="text-4xl opacity-50">
-                        {item.type === "drug" ? "\uD83D\uDC8A" : "\uD83D\uDD2B"}
+                        {item.type === "drug" ? "💊" : "🔫"}
                       </span>
                     )}
                   </div>
