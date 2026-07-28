@@ -1,5 +1,10 @@
 import { Badge } from "../../../../components/ui/badge";
 
+interface IllegalAreaHeroSectionProps {
+  selectedRole: "faction" | "civilian";
+  onRoleChange: (role: "faction" | "civilian") => void;
+}
+
 const secondaryCtaClass =
   "inline-flex h-auto shrink-0 items-center gap-2 rounded-lg border border-[#161b22] bg-[#080b10b8] px-7 py-4 [font-family:'Inter',Helvetica] text-[15px] font-bold leading-normal tracking-[0] text-[#f5f7fa] backdrop-blur-[5px] backdrop-brightness-[100%] transition-colors hover:bg-[#080b10]/90 [-webkit-backdrop-filter:blur(5px)_brightness(100%)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b8c7d9]/40";
 
@@ -91,58 +96,13 @@ function IconViewSkillInformation() {
   );
 }
 
-function IconFaction() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path
-        d="M9 1.5L2.25 4.5V8.25C2.25 12.42 5.13 16.26 9 17.25C12.87 16.26 15.75 12.42 15.75 8.25V4.5L9 1.5Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M6.75 9L8.25 10.5L11.25 7.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function IconIllegalCivilian() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path
-        d="M9 2.25C5.82 2.25 3.25 4.82 3.25 8V9.75C3.25 10.58 3.92 11.25 4.75 11.25H13.25C14.08 11.25 14.75 10.58 14.75 9.75V8C14.75 4.82 12.18 2.25 9 2.25Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M3.75 15.75C3.75 13.26 5.76 11.25 8.25 11.25H9.75C12.24 11.25 14.25 13.26 14.25 15.75"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-import React, { useState } from "react";
-
-
-export const IllegalAreaHeroSection = (): JSX.Element => {
-  const [selectedRole, setSelectedRole] = useState<"faction" | "civilian">("faction");
-
+export const IllegalAreaHeroSection = ({
+  selectedRole,
+  onRoleChange,
+}: IllegalAreaHeroSectionProps): JSX.Element => {
   return (
     <section className="relative w-full overflow-hidden">
       <div className="relative min-h-[843px] w-full">
-        {/* Background Layers */}
         <div className="absolute inset-0 opacity-[0.42]">
           <div className="absolute inset-0 [background:url(..//illegal-area-background.png)_50%_50%_/_cover]" />
           <img
@@ -164,8 +124,6 @@ export const IllegalAreaHeroSection = (): JSX.Element => {
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,6,7,0.53)_0%,rgba(5,6,7,0.3)_40%,rgba(5,6,7,0.47)_100%)] opacity-50" />
         <div className="absolute inset-0 opacity-[0.18] [background:radial-gradient(50%_50%_at_50%_50%,rgba(255,255,255,0.06)_3%,rgba(255,255,255,0)_3%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,7,10,0.22)_0%,rgba(5,7,10,0.58)_58%,rgba(5,7,10,0.75)_100%)]" />
-
-        {/* Hero Content (Restored to exact original layout) */}
         <div className="relative mx-auto flex min-h-[843px] w-full max-w-[1440px] items-start px-4 pb-24 pt-20 sm:px-6 md:px-8 md:pb-[87px] md:pt-24">
           <header className="flex w-full max-w-[860px] flex-col items-start">
             <Badge className="h-auto rounded-xl border-none bg-transparent px-3.5 py-2 [font-family:'Inter',Helvetica] text-xs font-bold tracking-[0.48px] text-[#f5f7fa] hover:bg-transparent">
@@ -175,7 +133,7 @@ export const IllegalAreaHeroSection = (): JSX.Element => {
             </Badge>
             <div className="max-w-[860px] pt-5">
               <h1 className="[font-family:'Inter',Helvetica] text-[40px] font-black leading-[1.02] tracking-[-2.4px] text-[#f5f7fa] sm:text-[52px] md:text-7xl md:tracking-[-3.60px]">
-                Second City <span className="text-xs uppercase tracking-widest text-[#b8c7d9]/60">RBX</span> Illegal Area
+                Second City <sup className="text-[0.4em]">RBX</sup> Illegal Area
               </h1>
             </div>
             <div className="max-w-[660px] pt-[17px] md:pr-[34.92px]">
@@ -211,43 +169,31 @@ export const IllegalAreaHeroSection = (): JSX.Element => {
                 </a>
               </div>
             </nav>
-          </header>
 
-          {/* --- ABSOLUTELY POSITIONED ROLE TOGGLE SWITCH --- */}
-          <div className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center justify-center text-center">
-            <span className="mb-3 text-xs font-bold tracking-[0.15em] text-[#b8c7d9]/60 uppercase">
-              SELECT ROLE
-            </span>
-            <div className="inline-flex rounded-full border border-[#161b22] bg-[#080b10]/90 p-1.5 backdrop-blur-md">
+            {/* Role Switcher Controls */}
+            <div className="mt-8 flex items-center gap-3 rounded-xl border border-[#161b22] bg-[#080b10b8] p-1.5 backdrop-blur-md">
               <button
-                type="button"
-                onClick={() => setSelectedRole("faction")}
-                className={`inline-flex items-center gap-2.5 rounded-full px-7 py-3 text-[14px] font-bold transition-all duration-200 ${
+                onClick={() => onRoleChange("faction")}
+                className={`rounded-lg px-5 py-2.5 text-sm font-bold transition-all ${
                   selectedRole === "faction"
-                    ? "bg-[#c8d6e5] text-[#080b10] shadow-md"
-                    : "text-[#f5f7fa]/70 hover:text-[#f5f7fa]"
+                    ? "bg-[#b8c7d9] text-[#07090c]"
+                    : "text-[#9aa6b2] hover:text-[#f5f7fa]"
                 }`}
               >
-                <IconFaction />
-                <span>FACTION</span>
+                Faction Rewards
               </button>
-
               <button
-                type="button"
-                onClick={() => setSelectedRole("civilian")}
-                className={`inline-flex items-center gap-2.5 rounded-full px-7 py-3 text-[14px] font-bold transition-all duration-200 ${
+                onClick={() => onRoleChange("civilian")}
+                className={`rounded-lg px-5 py-2.5 text-sm font-bold transition-all ${
                   selectedRole === "civilian"
-                    ? "bg-[#c8d6e5] text-[#080b10] shadow-md"
-                    : "text-[#f5f7fa]/70 hover:text-[#f5f7fa]"
+                    ? "bg-[#b8c7d9] text-[#07090c]"
+                    : "text-[#9aa6b2] hover:text-[#f5f7fa]"
                 }`}
               >
-                <IconIllegalCivilian />
-                <span>ILLEGAL CIVILIAN</span>
+                Illegal Civilian Rewards
               </button>
             </div>
-          </div>
-          {/* ----------------------------------------------- */}
-
+          </header>
         </div>
       </div>
     </section>
