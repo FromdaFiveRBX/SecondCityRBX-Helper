@@ -342,7 +342,7 @@ export const catalogItems: CatalogItem[] = [
     description:
       "Gives Headshot King skill until restart. 8% Armor (reactive). -30% Health (Fentanyl). -25% Dehydration.",
     tags: ["Headshot King", "Reactive armor"],
-    image: "https://fromdafiverbx.github.io/SecondCityRBX-Helper/Hydrocodone.png",
+    image: "https://github.com/FromdaFiveRBX/SecondCityRBX-Helper/blob/8385bfc1350829739f6eae7d9925ba1a2033c641/public/9889142c-e172-432a-a74c-e275655470a1_1_1.webp",
     stats: { duration: "Until restart", effect: "Headshot king, reactive armor", weight: "0.05 kg" },
   },
   {
@@ -368,7 +368,7 @@ export const catalogItems: CatalogItem[] = [
     description:
       "+10% Damage Resistance for 300s. -20% Health (severe loss). Hallucinations for 300s.",
     tags: ["Damage resistance"],
-    image: "https://fromdafiverbx.github.io/SecondCityRBX-Helper/K2.png",
+    image: "https://github.com/FromdaFiveRBX/SecondCityRBX-Helper/blob/8385bfc1350829739f6eae7d9925ba1a2033c641/public/421b8860-99a4-4c47-8dc5-1f0cb7b09bd5_1.webp",
     stats: { duration: "300s", effect: "Damage resistance, hallucinations", weight: "0.2 kg" },
   },
   {
@@ -511,7 +511,7 @@ export const catalogItems: CatalogItem[] = [
     description:
       "+25% Melee Damage for 300s. +10% Damage Resistance for 300s. -15% Health instantly. Stamina drain for 300s.",
     tags: ["Melee", "Damage resistance"],
-    image: "https://fromdafiverbx.github.io/SecondCityRBX-Helper/PCP.png",
+    image: "https://github.com/FromdaFiveRBX/SecondCityRBX-Helper/blob/8385bfc1350829739f6eae7d9925ba1a2033c641/public/5d6da11a-644e-4b2d-8494-f0571890abed_1.webp",
     stats: { duration: "300s", effect: "Melee damage, damage resistance", weight: "0.1 kg" },
   },
   {
@@ -550,7 +550,7 @@ export const catalogItems: CatalogItem[] = [
     description:
       "20% Health Regen. 5% Damage Resistance for 600s. Increased aim sway for 600s. Hallucinations for 600s.",
     tags: ["Health regen", "Damage resistance"],
-    image: "https://fromdafiverbx.github.io/SecondCityRBX-Helper/Shrooms.png",
+    image: "https://github.com/FromdaFiveRBX/SecondCityRBX-Helper/blob/b71ad596e9ce76cecba1efcc1b86cc821c9c6713/public/mushroom.webp",
     stats: { duration: "600s", effect: "Health regen, damage resistance", weight: "0.1 kg" },
   },
   {
